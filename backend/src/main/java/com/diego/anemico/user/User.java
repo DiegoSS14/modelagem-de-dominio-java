@@ -1,4 +1,4 @@
-package com.diego.user;
+package com.diego.anemico.user;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,8 +14,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class User {
-    String id;
-    String name;
-    String email;
-    String password;
+    private String id;
+    private String name;
+    private String email;
+    private String password;
 }

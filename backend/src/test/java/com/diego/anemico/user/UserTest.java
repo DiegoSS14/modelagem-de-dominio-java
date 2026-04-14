@@ -1,6 +1,7 @@
 package com.diego.anemico.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -53,6 +54,13 @@ public class UserTest {
         User user = new User("1", "Diego", "diego@gmail.com", "12345678");
         User user2 = new User("2", "Diego", "diego@gmail.com", "12345678");
         assertNotEquals(user, user2);
+    }
+
+    @Test 
+    void deveCompararDoisUsuariosDiferentesEquals(){
+        User user = new User("1", "Diego", "diego@gmail.com", "12345678");
+        User user2 = new User("2", "Diego", "diego@gmail.com", "12345678");
+        assertFalse(user.equals(user2));
     }
 
     @Test 

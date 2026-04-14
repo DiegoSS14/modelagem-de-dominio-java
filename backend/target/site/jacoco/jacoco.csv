@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-modelagem-dominio,com.diego.util,Validator,0,20,0,6,0,4,0,5,0,2
+modelagem-dominio,com.diego.util,Validator,0,101,0,24,0,18,0,20,0,8
 modelagem-dominio,com.diego.anemico.user,User,32,178,22,16,0,9,18,15,0,14
 modelagem-dominio,com.diego,Main,15,0,0,0,4,0,2,0,2,0

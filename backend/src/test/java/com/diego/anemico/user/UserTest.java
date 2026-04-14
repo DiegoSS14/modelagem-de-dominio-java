@@ -74,4 +74,11 @@ public class UserTest {
         User user2 = new User("1", "Diego", "diego@gmail.com", "12345678");
         assertEquals(user.hashCode(), user2.hashCode());
     }
+    
+    @Test
+    void deveRetornarOUsuarioEmFormaDeString() {
+        User user = new User("1", "Diego", "diego@gmail.com", "12345678");
+        String userString = "User(id=1, name=Diego, email=diego@gmail.com, password=12345678)";
+        assertEquals(user.toString(), userString);
+    }
 }

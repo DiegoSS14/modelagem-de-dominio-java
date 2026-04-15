@@ -80,6 +80,16 @@ public class ValidatorTest {
         CharSequence texto = "abcde";
         assertEquals(GENERIC_ERROR, Validator.greaterThan(texto, 4, GENERIC_ERROR));
     }
+
+    @Test
+    void deveRetornarErroNoGreaterThanQuandoCharSequenceForNula() {
+        assertEquals(GENERIC_ERROR, Validator.greaterThan((CharSequence) null, 5, GENERIC_ERROR));
+    }
+
+    @Test
+    void deveRetornarErroNoGreaterThanComCollectionQuandoForNula() {
+        assertEquals(GENERIC_ERROR, Validator.greaterThan((List<?>) null, 3, GENERIC_ERROR));
+    }
     
     @Test
     void testLessThan() {
@@ -103,6 +113,16 @@ public class ValidatorTest {
     void deveRetornarErroNoLessThanQuandoCharSequenceForMenorQueOTamanhoMinimo() {
         CharSequence texto = "abc";
         assertEquals(GENERIC_ERROR, Validator.lessThan(texto, 4, GENERIC_ERROR));
+    }
+
+    @Test
+    void deveRetornarErroNoLessThanQuandoCharSequenceForNula() {
+        assertEquals(GENERIC_ERROR, Validator.lessThan((CharSequence) null, 5, GENERIC_ERROR));
+    }
+
+    @Test
+    void deveRetornarErroNoLessThanComCollectionQuandoForNula() {
+        assertEquals(GENERIC_ERROR, Validator.lessThan((List<?>) null, 3, GENERIC_ERROR));
     }
 
     @Test
@@ -144,5 +164,10 @@ public class ValidatorTest {
     void deveInvalidarUmTextoAPartirDoRegexAoReceberTextoNulo() {
         Pattern regex = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z0-9$!@#%&*()]{8,}$");
         assertEquals(GENERIC_ERROR, Validator.regex(null, regex, GENERIC_ERROR));
+    }
+
+    @Test
+    void deveRetornarErroNoNotEmptyQuandoCharSequenceForNule() {
+        assertEquals(GENERIC_ERROR, Validator.notEmpty(null, GENERIC_ERROR));
     }
 }

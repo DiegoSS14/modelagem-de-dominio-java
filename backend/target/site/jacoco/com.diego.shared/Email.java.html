@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Email.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">modelagem-dominio</a> &gt; <a href="index.source.html" class="el_package">com.diego.shared</a> &gt; <span class="el_source">Email.java</span></div><h1>Email.java</h1><pre class="source lang-java linenums">package com.diego.shared;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.regex.Pattern;
+
+import com.diego.util.Validator;
+
+public record Email(String value) {
+    public static final String ERROR_NULL = &quot;Email is null&quot;;
+    public static final String ERROR_EMPTY = &quot;Email is empty&quot;;
+    public static final String ERROR_LESS_THAN = &quot;Email less&quot;;
+    public static final String ERROR_GREATER_THAN = &quot;Email is greater&quot;;
+    public static final String ERROR_INVALID = &quot;Email is not valid&quot;;
+
+<span class="fc" id="L16">    public static final Pattern regex = Pattern.compile(&quot;^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$&quot;,</span>
+<span class="fc" id="L17">            Pattern.CASE_INSENSITIVE);</span>
+
+<span class="fc" id="L19">    public Email {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        value = (value == null) ? null : value.trim().toLowerCase(Locale.ROOT);</span>
+
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (Validator.notNull(value, ERROR_NULL) != null) {</span>
+<span class="fc" id="L23">            throw new IllegalArgumentException(ERROR_NULL);</span>
+        }
+
+<span class="fc" id="L26">        List&lt;String&gt; errors = Validator.combine(</span>
+<span class="fc" id="L27">            Validator.notEmpty(value, ERROR_EMPTY),</span>
+<span class="fc" id="L28">            Validator.lessThan(value, 5, ERROR_LESS_THAN),</span>
+<span class="fc" id="L29">            Validator.greaterThan(value, 60, ERROR_GREATER_THAN),</span>
+<span class="fc" id="L30">            Validator.regex(value, regex, ERROR_INVALID));</span>
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (!errors.isEmpty()) {</span>
+<span class="fc" id="L33">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
+        }
+<span class="fc" id="L35">    }</span>
+
+    public String domain() {
+<span class="fc" id="L38">        return this.extractDomain(value);</span>
+    }
+
+    public String local() {
+<span class="fc" id="L42">        return this.extractLocal(value);</span>
+    }
+
+    private String extractLocal(String value) {
+<span class="fc" id="L46">        String local = value.split(&quot;@&quot;)[0];</span>
+<span class="fc" id="L47">        return local;</span>
+    }
+
+    private String extractDomain(String value) {
+<span class="fc" id="L51">        String domain = value.split(&quot;@&quot;)[1];</span>
+<span class="fc" id="L52">        return domain;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

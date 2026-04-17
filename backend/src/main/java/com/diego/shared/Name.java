@@ -20,6 +20,7 @@ public record Name(String value) {
         if (value == null) {
             throw new IllegalArgumentException(ERROR_NULL);
         }
+        value = value.trim().replaceAll("\\s+", " ");
 
         String lastNameValue = extractLastName(value);
 

@@ -26,4 +26,10 @@ public class NameTest {
     void deveRetornarErroAoBuscarSobrenomeQuandoNaoExiste() {
         assertThrows(IllegalArgumentException.class, () -> new Name("Diego"));
     }
+
+    @Test
+    void deveRemoverOsEspacosQuandoEstiveremDuplicados() {
+        Name name = new Name("Diego                Sousa");
+        assertEquals("Diego Sousa", name.fullName());
+    }
 }

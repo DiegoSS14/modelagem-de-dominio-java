@@ -11,39 +11,48 @@ public record Name(String value) {
     public static final String ERROR_EMPTY = &quot;Name is empty&quot;;
     public static final String ERROR_LESS_THAN = &quot;Name is small&quot;;
     public static final String ERROR_GREATER_THAN = &quot;Name is long&quot;;
+    public static final String NO_LAST_NAME = &quot;No last name&quot;;
     public static final String INVALID_CHARACTERS = &quot;Invalid characters&quot;;
 
-<span class="fc" id="L16">    private static final Pattern REGEX = Pattern.compile(&quot;^[a-zA-ZÀ-ÿ\\s]+$&quot;);</span>
+<span class="fc" id="L17">    private static final Pattern REGEX = Pattern.compile(&quot;^[a-zA-ZÀ-ÿ\\s]+$&quot;);</span>
 
-<span class="fc" id="L18">    public Name {</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (value == null) {</span>
-<span class="fc" id="L20">            throw new IllegalArgumentException(ERROR_NULL);</span>
+<span class="fc" id="L19">    public Name {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (value == null) {</span>
+<span class="fc" id="L21">            throw new IllegalArgumentException(ERROR_NULL);</span>
         }
+<span class="fc" id="L23">        value.replaceAll(&quot;\\s+&quot;, &quot; &quot;);</span>
 
-<span class="fc" id="L23">        List&lt;String&gt; errors = Validator.combine(</span>
-<span class="fc" id="L24">                Validator.regex(value, REGEX, INVALID_CHARACTERS),</span>
-<span class="fc" id="L25">                Validator.lessThan(value, 4, ERROR_LESS_THAN),</span>
-<span class="fc" id="L26">                Validator.greaterThan(value, 40, ERROR_GREATER_THAN),</span>
-<span class="fc" id="L27">                Validator.notEmpty(value, ERROR_EMPTY));</span>
+<span class="fc" id="L25">        String lastNameValue = extractLastName(value);</span>
 
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (errors.size() &gt; 0) {</span>
-<span class="fc" id="L30">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
+<span class="fc" id="L27">        List&lt;String&gt; errors = Validator.combine(</span>
+<span class="fc" id="L28">                Validator.regex(value, REGEX, INVALID_CHARACTERS),</span>
+<span class="fc" id="L29">                Validator.lessThan(lastNameValue, 4, NO_LAST_NAME),</span>
+<span class="fc" id="L30">                Validator.lessThan(value, 4, ERROR_LESS_THAN),</span>
+<span class="fc" id="L31">                Validator.greaterThan(value, 40, ERROR_GREATER_THAN),</span>
+<span class="fc" id="L32">                Validator.notEmpty(value, ERROR_EMPTY));</span>
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (errors.size() &gt; 0) {</span>
+<span class="fc" id="L35">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
         }
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L37">    }</span>
 
     public String firstName() {
-<span class="fc" id="L35">        return value.trim().split(&quot;\\s+&quot;)[0];</span>
+<span class="fc" id="L40">        return value.trim().split(&quot;\\s+&quot;)[0];</span>
     }
 
     public String lastName() {
-<span class="fc" id="L39">        String[] parts = value.trim().split(&quot;\\s+&quot;);</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        return parts.length &gt; 1</span>
-<span class="fc" id="L41">                ? String.join(&quot; &quot;, Arrays.copyOfRange(parts, 1, parts.length))</span>
-<span class="fc" id="L42">                : &quot;&quot;;</span>
+<span class="fc" id="L44">        return extractLastName(value);</span>
     }
 
     public String fullName() {
-<span class="fc" id="L46">        return value;</span>
+<span class="fc" id="L48">        return value;</span>
+    }
+
+    private static String extractLastName(String fullName) {
+<span class="fc" id="L52">        String[] parts = fullName.trim().split(&quot;\\s+&quot;);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        return parts.length &gt; 1</span>
+<span class="fc" id="L54">                ? String.join(&quot; &quot;, Arrays.copyOfRange(parts, 1, parts.length))</span>
+<span class="fc" id="L55">                : &quot;&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

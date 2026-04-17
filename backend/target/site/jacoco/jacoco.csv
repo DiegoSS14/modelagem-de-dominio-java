@@ -1,6 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-modelagem-dominio,com.diego.auth.user,User,46,0,0,0,4,0,10,0,10,0
+modelagem-dominio,com.diego.auth.user,User,46,0,0,0,7,0,10,0,10,0
 modelagem-dominio,com.diego.util,Validator,0,127,0,32,0,26,0,24,0,8
-modelagem-dominio,com.diego.shared,Email,0,96,0,6,0,20,0,9,0,6
+modelagem-dominio,com.diego.shared,Name,0,83,0,6,0,17,0,7,0,4
+modelagem-dominio,com.diego.shared,Email,0,96,0,6,0,19,0,9,0,6
 modelagem-dominio,com.diego.anemico.user,User,0,210,0,38,0,9,0,33,0,14
 modelagem-dominio,com.diego,Main,15,0,0,0,4,0,2,0,2,0

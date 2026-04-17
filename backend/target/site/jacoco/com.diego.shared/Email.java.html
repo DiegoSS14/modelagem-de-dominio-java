@@ -14,7 +14,7 @@ public record Email(String value) {
     public static final String ERROR_INVALID = &quot;Email is not valid&quot;;
 
 <span class="fc" id="L16">    public static final Pattern regex = Pattern.compile(&quot;^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$&quot;,</span>
-<span class="fc" id="L17">            Pattern.CASE_INSENSITIVE);</span>
+            Pattern.CASE_INSENSITIVE);
 
 <span class="fc" id="L19">    public Email {</span>
 <span class="fc bfc" id="L20" title="All 2 branches covered.">        value = (value == null) ? null : value.trim().toLowerCase(Locale.ROOT);</span>

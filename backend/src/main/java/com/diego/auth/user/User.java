@@ -1,6 +1,7 @@
 package com.diego.auth.user;
 
 import java.time.Instant;
+import java.util.jar.Attributes.Name;
 
 import com.diego.shared.Email;
 
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Setter
 public class User {
     private String id;
-    private String name;
+    private Name name;
     private Email email;
     private Instant registrationDate;
 }

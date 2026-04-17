@@ -18,12 +18,12 @@ public class NameTest {
     void deveLancarErrosAoCriarNomeInvalido() {
         assertThrows(IllegalArgumentException.class, () -> new Name(null));
         assertThrows(IllegalArgumentException.class, () -> new Name(""));
+        assertThrows(IllegalArgumentException.class, () -> new Name("dksadnsa()&^$"));
         assertThrows(IllegalArgumentException.class, () -> new Name("dksandnsaaaaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssldmksadnsajndjandjabdijadugbsdbakdnksandknbaskjdsaknbdkandjsnajkdnskandkmandskand,an,dam"));
     }
     
     @Test
-    void deveRetornarVazioAoBuscarSobrenomeQuandoNaoExiste() {
-        Name name = new Name("Diego");
-        assertEquals("", name.lastName());
+    void deveRetornarErroAoBuscarSobrenomeQuandoNaoExiste() {
+        assertThrows(IllegalArgumentException.class, () -> new Name("Diego"));
     }
 }

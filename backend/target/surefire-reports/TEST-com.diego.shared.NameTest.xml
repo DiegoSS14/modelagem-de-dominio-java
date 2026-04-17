@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.diego.shared.NameTest" time="0.014" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.diego.shared.NameTest" time="0.035" tests="3" errors="1" skipped="0" failures="2">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="C:\java\jdk-21.0.10\bin"/>
-    <property name="sun.java.command" value="C:\Users\Diego\AppData\Local\Temp\surefire15699643012517120784\surefirebooter-20260416211833218_3.jar C:\Users\Diego\AppData\Local\Temp\surefire15699643012517120784 2026-04-16T21-18-33_042-jvmRun1 surefire-20260416211833218_1tmp surefire_0-20260416211833218_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Diego\AppData\Local\Temp\surefire1506131521406388680\surefirebooter-20260416214131971_3.jar C:\Users\Diego\AppData\Local\Temp\surefire1506131521406388680 2026-04-16T21-41-31_884-jvmRun1 surefire-20260416214131971_1tmp surefire_0-20260416214131971_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\dev-projects\cursos\FormacaoDev\Formacao Java\Modelagem de dominio\backend\target\test-classes;C:\dev-projects\cursos\FormacaoDev\Formacao Java\Modelagem de dominio\backend\target\classes;C:\Users\Diego\.m2\repository\org\junit\jupiter\junit-jupiter\6.0.3\junit-jupiter-6.0.3.jar;C:\Users\Diego\.m2\repository\org\junit\jupiter\junit-jupiter-api\6.0.3\junit-jupiter-api-6.0.3.jar;C:\Users\Diego\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Diego\.m2\repository\org\junit\platform\junit-platform-commons\6.0.3\junit-platform-commons-6.0.3.jar;C:\Users\Diego\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Diego\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\Diego\.m2\repository\org\junit\jupiter\junit-jupiter-params\6.0.3\junit-jupiter-params-6.0.3.jar;C:\Users\Diego\.m2\repository\org\junit\jupiter\junit-jupiter-engine\6.0.3\junit-jupiter-engine-6.0.3.jar;C:\Users\Diego\.m2\repository\org\junit\platform\junit-platform-engine\6.0.3\junit-platform-engine-6.0.3.jar;C:\Users\Diego\.m2\repository\org\projectlombok\lombok\1.18.38\lombok-1.18.38.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Diego\AppData\Local\Temp\surefire15699643012517120784\surefirebooter-20260416211833218_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Diego\AppData\Local\Temp\surefire1506131521406388680\surefirebooter-20260416214131971_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.10+8-LTS-217"/>
@@ -58,7 +58,41 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="deveRetornarVazioAoBuscarSobrenomeQuandoNaoExiste" classname="com.diego.shared.NameTest" time="0.002"/>
-  <testcase name="deveLancarErrosAoCriarNomeInvalido" classname="com.diego.shared.NameTest" time="0.004"/>
-  <testcase name="deveCriarUmNomeValido" classname="com.diego.shared.NameTest" time="0.002"/>
+  <testcase name="deveRetornarErroAoBuscarSobrenomeQuandoNaoExiste" classname="com.diego.shared.NameTest" time="0.02">
+    <failure message="Unexpected exception type thrown, expected: &lt;java.lang.IllegalArgumentException&gt; but was: &lt;java.lang.NullPointerException&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:68)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at com.diego.shared.NameTest.deveRetornarErroAoBuscarSobrenomeQuandoNaoExiste(NameTest.java:27)
+Caused by: java.lang.NullPointerException: Cannot invoke "String.trim()" because "this.value" is null
+	at com.diego.shared.Name.lastName(Name.java:41)
+	at com.diego.shared.Name.<init>(Name.java:26)
+	at com.diego.shared.NameTest.lambda$4(NameTest.java:27)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:54)
+	... 3 more
+]]></failure>
+  </testcase>
+  <testcase name="deveLancarErrosAoCriarNomeInvalido" classname="com.diego.shared.NameTest" time="0.003">
+    <failure message="Unexpected exception type thrown, expected: &lt;java.lang.IllegalArgumentException&gt; but was: &lt;java.lang.NullPointerException&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:68)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at com.diego.shared.NameTest.deveLancarErrosAoCriarNomeInvalido(NameTest.java:20)
+Caused by: java.lang.NullPointerException: Cannot invoke "String.trim()" because "this.value" is null
+	at com.diego.shared.Name.lastName(Name.java:41)
+	at com.diego.shared.Name.<init>(Name.java:26)
+	at com.diego.shared.NameTest.lambda$1(NameTest.java:20)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:54)
+	... 3 more
+]]></failure>
+  </testcase>
+  <testcase name="deveCriarUmNomeValido" classname="com.diego.shared.NameTest" time="0.002">
+    <error message="Cannot invoke &quot;String.trim()&quot; because &quot;this.value&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "String.trim()" because "this.value" is null
+	at com.diego.shared.Name.lastName(Name.java:41)
+	at com.diego.shared.Name.<init>(Name.java:26)
+	at com.diego.shared.NameTest.deveCriarUmNomeValido(NameTest.java:11)
+]]></error>
+  </testcase>
 </testsuite>

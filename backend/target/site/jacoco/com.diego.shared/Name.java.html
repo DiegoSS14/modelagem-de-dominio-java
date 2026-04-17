@@ -2,6 +2,7 @@
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.diego.util.Validator;
 
@@ -10,36 +11,39 @@ public record Name(String value) {
     public static final String ERROR_EMPTY = &quot;Name is empty&quot;;
     public static final String ERROR_LESS_THAN = &quot;Name is small&quot;;
     public static final String ERROR_GREATER_THAN = &quot;Name is long&quot;;
+    public static final String INVALID_CHARACTERS = &quot;Invalid characters&quot;;
 
-<span class="fc" id="L14">    public Name {</span>
-<span class="fc" id="L15">        String isNull = Validator.notNull(value, ERROR_NULL);</span>
-<span class="fc bfc" id="L16" title="All 2 branches covered.">        if (isNull != null) {</span>
-<span class="fc" id="L17">            throw new IllegalArgumentException(ERROR_NULL);</span>
+<span class="fc" id="L16">    private static final Pattern REGEX = Pattern.compile(&quot;^[a-zA-ZÀ-ÿ\\s]+$&quot;);</span>
+
+<span class="fc" id="L18">    public Name {</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (value == null) {</span>
+<span class="fc" id="L20">            throw new IllegalArgumentException(ERROR_NULL);</span>
         }
 
-<span class="fc" id="L20">        List&lt;String&gt; errors = Validator.combine(</span>
-<span class="fc" id="L21">                Validator.lessThan(value, 4, ERROR_LESS_THAN),</span>
-<span class="fc" id="L22">                Validator.greaterThan(value, 40, ERROR_GREATER_THAN),</span>
-<span class="fc" id="L23">                Validator.notEmpty(value, ERROR_EMPTY));</span>
+<span class="fc" id="L23">        List&lt;String&gt; errors = Validator.combine(</span>
+<span class="fc" id="L24">                Validator.regex(value, REGEX, INVALID_CHARACTERS),</span>
+<span class="fc" id="L25">                Validator.lessThan(value, 4, ERROR_LESS_THAN),</span>
+<span class="fc" id="L26">                Validator.greaterThan(value, 40, ERROR_GREATER_THAN),</span>
+<span class="fc" id="L27">                Validator.notEmpty(value, ERROR_EMPTY));</span>
 
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (errors.size() &gt; 0) {</span>
-<span class="fc" id="L26">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (errors.size() &gt; 0) {</span>
+<span class="fc" id="L30">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
         }
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L32">    }</span>
 
     public String firstName() {
-<span class="fc" id="L31">        return value.trim().split(&quot;\\s+&quot;)[0];</span>
+<span class="fc" id="L35">        return value.trim().split(&quot;\\s+&quot;)[0];</span>
     }
 
     public String lastName() {
-<span class="fc" id="L35">        String[] parts = value.trim().split(&quot;\\s+&quot;);</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        return parts.length &gt; 1</span>
-<span class="fc" id="L37">                ? String.join(&quot; &quot;, Arrays.copyOfRange(parts, 1, parts.length))</span>
-<span class="fc" id="L38">                : &quot;&quot;;</span>
+<span class="fc" id="L39">        String[] parts = value.trim().split(&quot;\\s+&quot;);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        return parts.length &gt; 1</span>
+<span class="fc" id="L41">                ? String.join(&quot; &quot;, Arrays.copyOfRange(parts, 1, parts.length))</span>
+<span class="fc" id="L42">                : &quot;&quot;;</span>
     }
 
     public String fullName() {
-<span class="fc" id="L42">        return value;</span>
+<span class="fc" id="L46">        return value;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

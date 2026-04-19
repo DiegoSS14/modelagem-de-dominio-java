@@ -20,7 +20,7 @@ public record Name(String value) {
 <span class="fc bfc" id="L20" title="All 2 branches covered.">        if (value == null) {</span>
 <span class="fc" id="L21">            throw new IllegalArgumentException(ERROR_NULL);</span>
         }
-<span class="fc" id="L23">        value.replaceAll(&quot;\\s+&quot;, &quot; &quot;);</span>
+<span class="fc" id="L23">        value = value.trim().replaceAll(&quot;\\s+&quot;, &quot; &quot;);</span>
 
 <span class="fc" id="L25">        String lastNameValue = extractLastName(value);</span>
 

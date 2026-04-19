@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdUuid.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">modelagem-dominio</a> &gt; <a href="index.source.html" class="el_package">com.diego.shared</a> &gt; <span class="el_source">IdUuid.java</span></div><h1>IdUuid.java</h1><pre class="source lang-java linenums">package com.diego.shared;
+
+import java.util.List;
+import java.util.UUID;
+
+import com.diego.util.Validator;
+
+public record IdUuid(String value) implements Id&lt;String&gt; {
+
+<span class="fc" id="L10">    public IdUuid {</span>
+<span class="fc" id="L11">        List&lt;String&gt; errors = Validator.combine(</span>
+<span class="fc" id="L12">            Validator.notNull(value, Id.NULL_ID),</span>
+<span class="fc" id="L13">            Validator.notEmpty(value, Id.EMPTY_ID)</span>
+        );
+        
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if (!errors.isEmpty()) {</span>
+<span class="fc" id="L17">            throw new IllegalArgumentException(String.join(&quot;,&quot;, errors));</span>
+        }
+
+        try{
+<span class="fc" id="L21">            UUID.fromString(value);</span>
+<span class="fc" id="L22">        } catch(Exception error) {</span>
+<span class="fc" id="L23">            throw new IllegalArgumentException(error.getMessage());</span>
+<span class="fc" id="L24">        }</span>
+
+<span class="fc" id="L26">    }</span>
+
+    public String value() {
+        return value;
+    }
+
+    public static IdUuid newUUID() {
+<span class="fc" id="L33">        return new IdUuid(UUID.randomUUID().toString());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

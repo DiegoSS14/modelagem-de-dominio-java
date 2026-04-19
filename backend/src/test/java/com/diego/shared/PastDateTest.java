@@ -35,4 +35,10 @@ public class PastDateTest {
     void deveRetornarErroAoCriarDataFutura() {
         assertThrows(IllegalArgumentException.class, () -> new PastDate(Instant.now().plusSeconds(60)));
     }
+
+    @Test
+    void deveCriarUmaDataNoPassado() {
+        PastDate date = new PastDate(Instant.now().minusSeconds(60));
+        assertNotNull(date);
+    }
 }
